@@ -3,7 +3,7 @@
 
 import os from 'os';
 import path from 'path';
-import { createOpencodeClient } from path.join(os.homedir(), '.npm-global', 'lib', 'node_modules', '@opencode-ai', 'sdk', 'dist', 'index.js');
+const { createOpencodeClient } = await import(path.join(os.homedir(), '.npm-global', 'lib', 'node_modules', '@opencode-ai', 'sdk', 'dist', 'index.js'));
 import http from 'http';
 
 const PORT = 5200;

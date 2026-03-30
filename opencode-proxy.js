@@ -1,35 +1,8 @@
 #!/usr/bin/env node
-// Proxy para OpenCode SDK - Versión portable
+// Proxy para OpenCode SDK - Version con soporte streaming
 
-import { createOpencodeClient } from findOpencodeSDK();
+import { createOpencodeClient } from '/home/d0098/.npm-global/lib/node_modules/@opencode-ai/sdk/dist/index.js';
 import http from 'http';
-
-function findOpencodeSDK() {
-  const possiblePaths = [
-    process.env.NPM_CONFIG_PREFIX + '/lib/node_modules/@opencode-ai/sdk/dist/index.js',
-    process.env.HOME + '/.npm-global/lib/node_modules/@opencode-ai/sdk/dist/index.js',
-    '/usr/local/lib/node_modules/@opencode-ai/sdk/dist/index.js',
-    '/usr/lib/node_modules/@opencode-ai/sdk/dist/index.js',
-  ];
-  
-  for (const path of possiblePaths) {
-    try {
-      require('fs').accessSync(path);
-      return path;
-    } catch {}
-  }
-  
-  // Try to find via npm root
-  try {
-    const { execSync } = require('child_process');
-    const npmRoot = execSync('npm root -g', { encoding: 'utf8' }).trim();
-    const sdkPath = npmRoot + '/@opencode-ai/sdk/dist/index.js';
-    require('fs').accessSync(sdkPath);
-    return sdkPath;
-  } catch {}
-  
-  throw new Error('OpenCode SDK not found. Install with: npm install -g @opencode-ai/sdk');
-}
 
 const PORT = 5200;
 const SDK_URL = 'http://127.0.0.1:5100';
@@ -58,11 +31,27 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({
       data: [
+        // Big Pickle variants
         { id: 'opencode/big-pickle', name: 'Big Pickle', context_window: 200000 },
+        { id: 'opencode/big-pickle:high', name: 'Big Pickle (High)', context_window: 200000 },
+        { id: 'opencode/big-pickle:max', name: 'Big Pickle (Max)', context_window: 200000 },
+        // MiMo V2 Pro variants
         { id: 'opencode/mimo-v2-pro-free', name: 'MiMo V2 Pro Free', context_window: 1048576 },
+        { id: 'opencode/mimo-v2-pro-free:low', name: 'MiMo V2 Pro Free (Low)', context_window: 1048576 },
+        { id: 'opencode/mimo-v2-pro-free:medium', name: 'MiMo V2 Pro Free (Medium)', context_window: 1048576 },
+        { id: 'opencode/mimo-v2-pro-free:high', name: 'MiMo V2 Pro Free (High)', context_window: 1048576 },
+        // MiMo V2 Omni variants
         { id: 'opencode/mimo-v2-omni-free', name: 'MiMo V2 Omni Free', context_window: 262144 },
+        { id: 'opencode/mimo-v2-omni-free:low', name: 'MiMo V2 Omni Free (Low)', context_window: 262144 },
+        { id: 'opencode/mimo-v2-omni-free:medium', name: 'MiMo V2 Omni Free (Medium)', context_window: 262144 },
+        { id: 'opencode/mimo-v2-omni-free:high', name: 'MiMo V2 Omni Free (High)', context_window: 262144 },
+        // MiniMax (no variants)
         { id: 'opencode/minimax-m2.5-free', name: 'MiniMax M2.5 Free', context_window: 100000 },
-        { id: 'opencode/nemotron-3-super-free', name: 'Nemotron 3 Super Free', context_window: 100000 }
+        // Nemotron variants
+        { id: 'opencode/nemotron-3-super-free', name: 'Nemotron 3 Super Free', context_window: 100000 },
+        { id: 'opencode/nemotron-3-super-free:low', name: 'Nemotron 3 Super Free (Low)', context_window: 100000 },
+        { id: 'opencode/nemotron-3-super-free:medium', name: 'Nemotron 3 Super Free (Medium)', context_window: 100000 },
+        { id: 'opencode/nemotron-3-super-free:high', name: 'Nemotron 3 Super Free (High)', context_window: 100000 }
       ]
     }));
     return;
@@ -76,7 +65,17 @@ const server = http.createServer(async (req, res) => {
       try {
         const data = JSON.parse(body);
         const model = data.model || 'big-pickle';
-        const modelId = model.includes('/') ? model.split('/')[1] : model;
+        
+        // Extraer variant del modelo (ej: opencode/big-pickle:high -> modelId: big-pickle, variant: high)
+        let modelId = model.includes('/') ? model.split('/')[1] : model;
+        let modelVariant = '';
+        
+        if (modelId.includes(':')) {
+          const parts = modelId.split(':');
+          modelId = parts[0];
+          modelVariant = parts[1];
+        }
+        
         const isStreaming = data.stream === true;
         
         // Extraer el prompt
@@ -104,20 +103,28 @@ const server = http.createServer(async (req, res) => {
 
         if (!sessionId) {
           const client = createOpencodeClient({ baseUrl: SDK_URL });
+          const sessionConfig = { model: modelId };
+          if (modelVariant) {
+            sessionConfig.variant = modelVariant;
+          }
           const session = await client.session.create({
-            body: { config: { model: modelId } }
+            body: { config: sessionConfig }
           });
           sessionId = session.data?.id;
           sessions.set(authKey, sessionId);
-          log(`Session: ${sessionId}`);
+          log(`Session: ${sessionId}, Variant: ${modelVariant || 'default'}`);
         }
 
         // Enviar prompt
         const client = createOpencodeClient({ baseUrl: SDK_URL });
+        const modelConfig = { providerID: 'opencode', modelID: modelId };
+        if (modelVariant) {
+          modelConfig.variant = modelVariant;
+        }
         const result = await client.session.prompt({
           path: { id: sessionId },
           body: {
-            model: { providerID: 'opencode', modelID: modelId },
+            model: modelConfig,
             parts: [{ type: 'text', text: prompt }]
           }
         });

@@ -2,6 +2,10 @@
 
 This repository contains the necessary files to configure OpenClaw to use OpenCode's free models (Big Pickle, MiMo V2, etc.) through the OpenCode SDK.
 
+## No API Key Required
+
+This setup allows you to use OpenCode's free models (Big Pickle, MiMo V2 Pro, MiMo V2 Omni, MiniMax, Nemotron) **without needing an API key**. The same models and limits available in the OpenCode CLI TUI are now accessible through OpenClaw's web interface.
+
 ## ⚠️ Security Notice
 
 **NEVER commit API keys or tokens to this repository!**

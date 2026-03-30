@@ -1,8 +1,35 @@
 #!/usr/bin/env node
-// Proxy para OpenCode SDK - Version con soporte streaming
+// Proxy para OpenCode SDK - Versión portable
 
-import { createOpencodeClient } from '/home/d0098/.npm-global/lib/node_modules/@opencode-ai/sdk/dist/index.js';
+import { createOpencodeClient } from findOpencodeSDK();
 import http from 'http';
+
+function findOpencodeSDK() {
+  const possiblePaths = [
+    process.env.NPM_CONFIG_PREFIX + '/lib/node_modules/@opencode-ai/sdk/dist/index.js',
+    process.env.HOME + '/.npm-global/lib/node_modules/@opencode-ai/sdk/dist/index.js',
+    '/usr/local/lib/node_modules/@opencode-ai/sdk/dist/index.js',
+    '/usr/lib/node_modules/@opencode-ai/sdk/dist/index.js',
+  ];
+  
+  for (const path of possiblePaths) {
+    try {
+      require('fs').accessSync(path);
+      return path;
+    } catch {}
+  }
+  
+  // Try to find via npm root
+  try {
+    const { execSync } = require('child_process');
+    const npmRoot = execSync('npm root -g', { encoding: 'utf8' }).trim();
+    const sdkPath = npmRoot + '/@opencode-ai/sdk/dist/index.js';
+    require('fs').accessSync(sdkPath);
+    return sdkPath;
+  } catch {}
+  
+  throw new Error('OpenCode SDK not found. Install with: npm install -g @opencode-ai/sdk');
+}
 
 const PORT = 5200;
 const SDK_URL = 'http://127.0.0.1:5100';

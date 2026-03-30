@@ -70,7 +70,7 @@ This setup allows you to use OpenCode's free models (Big Pickle, MiMo V2 Pro, Mi
 
 ```bash
 # Clone this repository
-git clone https://github.com/YOUR_USERNAME/openclaw-opencode-setup.git
+git clone https://github.com/avenInk/setup-openclaw-opencode
 cd openclaw-opencode-setup
 
 # Run the installer

@@ -1,0 +1,14 @@
+[Unit]
+Description=OpenClaw with OpenCode
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/.openclaw
+ExecStart=%h/.openclaw/start-openclaw.sh
+ExecStop=%h/.openclaw/stop-openclaw.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

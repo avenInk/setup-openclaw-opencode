@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.24",
+    "lastTouchedAt": "2026-03-30T00:00:00.000Z"
+  },
+  "env": {
+    "GROQ_API_KEY": "",
+    "OPENROUTER_API_KEY": ""
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-29T01:03:35.740Z",
+    "lastRunVersion": "2026.3.24",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {}
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "opencode": {
+        "baseUrl": "http://127.0.0.1:5200/",
+        "apiKey": "",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "opencode/big-pickle",
+            "name": "Big Pickle",
+            "api": "openai-completions",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 64000
+          },
+          {
+            "id": "opencode/mimo-v2-pro-free",
+            "name": "MiMo V2 Pro Free",
+            "api": "openai-completions",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 1048576,
+            "maxTokens": 32768
+          },
+          {
+            "id": "opencode/mimo-v2-omni-free",
+            "name": "MiMo V2 Omni Free",
+            "api": "openai-completions",
+            "reasoning": false,
+            "input": ["text", "image"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 32768
+          },
+          {
+            "id": "opencode/minimax-m2.5-free",
+            "name": "MiniMax M2.5 Free",
+            "api": "openai-completions",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 100000,
+            "maxTokens": 16384
+          },
+          {
+            "id": "opencode/nemotron-3-super-free",
+            "name": "Nemotron 3 Super Free",
+            "api": "openai-completions",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 100000,
+            "maxTokens": 16384
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "opencode/big-pickle"
+      },
+      "models": {
+        "opencode/big-pickle": {
+          "alias": "Big Pickle"
+        },
+        "opencode/mimo-v2-pro-free": {
+          "alias": "MiMo V2 Pro Free"
+        },
+        "opencode/mimo-v2-omni-free": {
+          "alias": "MiMo V2 Omni Free"
+        },
+        "opencode/minimax-m2.5-free": {
+          "alias": "MiniMax M2.5 Free"
+        },
+        "opencode/nemotron-3-super-free": {
+          "alias": "Nemotron 3 Super Free"
+        }
+      },
+      "workspace": "~/.openclaw/workspace"
+    }
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "duckduckgo"
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "boot-md": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        },
+        "command-logger": {
+          "enabled": true
+        },
+        "bootstrap-extra-files": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "CHANGE_ME"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send"
+      ]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "duckduckgo": {
+        "enabled": true
+      }
+    }
+  }
+}

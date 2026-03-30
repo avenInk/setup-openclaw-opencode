@@ -11,6 +11,17 @@ This repository contains the necessary files to configure OpenClaw to use OpenCo
 - Environment variables for API keys are left empty
 - Review the `.gitignore` file to ensure no sensitive data is committed
 
+## ⚠️ Disclaimer
+
+**This project is for educational and personal use only.**
+
+- This setup uses the official OpenCode SDK and free models provided by OpenCode
+- Use at your own risk. The author is not responsible for any issues or damages
+- This is not affiliated with, endorsed by, or connected to OpenCode or its parent companies
+- Before using this for commercial purposes, please review OpenCode's Terms of Service
+- The free models may have usage limits or rate restrictions imposed by OpenCode
+- If you're unsure about compliance, contact OpenCode directly before using this setup
+
 ## Architecture Overview
 
 ```

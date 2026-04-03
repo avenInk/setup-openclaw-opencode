@@ -197,26 +197,45 @@ function parseModel(rawModel) {
   return { modelId, variant };
 }
 
-function buildPromptText(messages) {
-  // Build conversation text from non-system messages
-  const parts = [];
+function buildPromptParts(messages) {
+  // Build conversation text & images from non-system messages
+  const fileParts = [];
+  const textParts = [];
+  
   for (const msg of messages) {
     if (msg.role === 'system') continue; // system handled separately
     const role = msg.role || 'user';
     let text = '';
+    
     if (typeof msg.content === 'string') {
       text = msg.content;
     } else if (Array.isArray(msg.content)) {
       text = msg.content.filter(p => p.type === 'text').map(p => p.text).join('\n');
+      
+      for (const p of msg.content) {
+        if (p.type === 'image_url' && p.image_url && p.image_url.url) {
+          const url = p.image_url.url;
+          let mime = 'image/jpeg';
+          const match = url.match(/^data:([^;]+);base64,/);
+          if (match) mime = match[1];
+          fileParts.push({ type: 'file', mime: mime, url: url });
+        }
+      }
     }
+    
     if (!text) continue;
     if (role === 'assistant') {
-      parts.push(`[Assistant]\n${text}`);
+      textParts.push(`[Assistant]\n${text}`);
     } else {
-      parts.push(`[User]\n${text}`);
+      textParts.push(`[User]\n${text}`);
     }
   }
-  return parts.join('\n\n');
+  
+  const finalText = textParts.join('\n\n');
+  const finalParts = [{ type: 'text', text: finalText || " " }];
+  finalParts.push(...fileParts);
+  
+  return finalParts;
 }
 
 function extractSystemPrompt(messages) {
@@ -283,7 +302,7 @@ async function getOrCreateSession(authKey, modelId, variant) {
   return { sessionId, sKey, isNew: true };
 }
 
-async function sendPrompt(authKey, modelId, variant, promptText, systemPrompt) {
+async function sendPrompt(authKey, modelId, variant, promptParts, systemPrompt) {
   const maxRetries = 2;
 
   for (let attempt = 0; attempt < maxRetries; attempt++) {
@@ -292,7 +311,7 @@ async function sendPrompt(authKey, modelId, variant, promptText, systemPrompt) {
     try {
       const body = {
         model: { providerID: 'opencode', modelID: modelId },
-        parts: [{ type: 'text', text: promptText }],
+        parts: promptParts,
       };
       if (variant) body.variant = variant;
       if (systemPrompt) body.system = systemPrompt;
@@ -458,13 +477,13 @@ const server = http.createServer(async (req, res) => {
         const fullSystemPrompt = [CONFIG.systemPromptInjection, userSystemPrompt]
           .filter(Boolean).join('\n\n');
 
-        // Build conversational text from non-system messages
-        const promptText = buildPromptText(messages);
+        // Build conversational text and extract images from non-system messages
+        const promptParts = buildPromptParts(messages);
 
         log('info', `Request: model=${modelId}${variant ? ':' + variant : ''}, msgs=${messages.length}, stream=${isStreaming}`);
 
         const authKey = req.headers.authorization || 'default';
-        const result = await sendPrompt(authKey, modelId, variant, promptText, fullSystemPrompt);
+        const result = await sendPrompt(authKey, modelId, variant, promptParts, fullSystemPrompt);
 
         const { responseText, reasoningContent, tokenUsage } = extractResponse(result);
         const finalText = responseText || '[No response from model]';

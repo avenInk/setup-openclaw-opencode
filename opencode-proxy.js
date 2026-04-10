@@ -46,8 +46,8 @@ function log(level, msg) {
 // ─── Model Catalog ──────────────────────────────────────────────────────────
 const MODEL_CATALOG = [
   { id: 'big-pickle', name: 'Big Pickle', contextWindow: 200000, maxTokens: 64000, input: ['text'], reasoning: true, variants: ['high', 'max'] },
-  { id: 'mimo-v2-pro-free', name: 'MiMo V2 Pro Free', contextWindow: 1048576, maxTokens: 32768, input: ['text'], reasoning: false, variants: ['low', 'medium', 'high'] },
-  { id: 'mimo-v2-omni-free', name: 'MiMo V2 Omni Free', contextWindow: 262144, maxTokens: 32768, input: ['text', 'image'], reasoning: false, variants: ['low', 'medium', 'high'] },
+  { id: 'qwen3.6-plus-free', name: 'Qwen3.6 Plus Free', contextWindow: 131072, maxTokens: 16384, input: ['text'], reasoning: false, variants: [] },
+  { id: 'gpt-5-nano', name: 'GPT-5 Nano', contextWindow: 128000, maxTokens: 16384, input: ['text'], reasoning: false, variants: [] },
   { id: 'minimax-m2.5-free', name: 'MiniMax M2.5 Free', contextWindow: 100000, maxTokens: 16384, input: ['text'], reasoning: false, variants: [] },
   { id: 'nemotron-3-super-free', name: 'Nemotron 3 Super Free', contextWindow: 100000, maxTokens: 16384, input: ['text'], reasoning: false, variants: ['low', 'medium', 'high'] },
 ];
@@ -304,7 +304,6 @@ async function getOrCreateSession(authKey, modelId, variant) {
 
 async function sendPrompt(authKey, modelId, variant, promptParts, systemPrompt) {
   const maxRetries = 2;
-
   for (let attempt = 0; attempt < maxRetries; attempt++) {
     const { sessionId, sKey } = await getOrCreateSession(authKey, modelId, variant);
 

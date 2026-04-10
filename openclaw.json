@@ -29,8 +29,15 @@
             "name": "Big Pickle",
             "api": "openai-completions",
             "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
             "contextWindow": 200000,
             "maxTokens": 64000
           },
@@ -39,8 +46,15 @@
             "name": "Big Pickle (High)",
             "api": "openai-completions",
             "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
             "contextWindow": 200000,
             "maxTokens": 64000
           },
@@ -49,98 +63,32 @@
             "name": "Big Pickle (Max)",
             "api": "openai-completions",
             "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
             "contextWindow": 200000,
             "maxTokens": 64000
-          },
-          {
-            "id": "opencode/mimo-v2-pro-free",
-            "name": "MiMo V2 Pro Free",
-            "api": "openai-completions",
-            "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 1048576,
-            "maxTokens": 32768
-          },
-          {
-            "id": "opencode/mimo-v2-pro-free:low",
-            "name": "MiMo V2 Pro Free (Low)",
-            "api": "openai-completions",
-            "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 1048576,
-            "maxTokens": 32768
-          },
-          {
-            "id": "opencode/mimo-v2-pro-free:medium",
-            "name": "MiMo V2 Pro Free (Medium)",
-            "api": "openai-completions",
-            "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 1048576,
-            "maxTokens": 32768
-          },
-          {
-            "id": "opencode/mimo-v2-pro-free:high",
-            "name": "MiMo V2 Pro Free (High)",
-            "api": "openai-completions",
-            "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 1048576,
-            "maxTokens": 32768
-          },
-          {
-            "id": "opencode/mimo-v2-omni-free",
-            "name": "MiMo V2 Omni Free",
-            "api": "openai-completions",
-            "reasoning": false,
-            "input": ["text", "image"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 262144,
-            "maxTokens": 32768
-          },
-          {
-            "id": "opencode/mimo-v2-omni-free:low",
-            "name": "MiMo V2 Omni Free (Low)",
-            "api": "openai-completions",
-            "reasoning": false,
-            "input": ["text", "image"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 262144,
-            "maxTokens": 32768
-          },
-          {
-            "id": "opencode/mimo-v2-omni-free:medium",
-            "name": "MiMo V2 Omni Free (Medium)",
-            "api": "openai-completions",
-            "reasoning": false,
-            "input": ["text", "image"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 262144,
-            "maxTokens": 32768
-          },
-          {
-            "id": "opencode/mimo-v2-omni-free:high",
-            "name": "MiMo V2 Omni Free (High)",
-            "api": "openai-completions",
-            "reasoning": false,
-            "input": ["text", "image"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 262144,
-            "maxTokens": 32768
           },
           {
             "id": "opencode/minimax-m2.5-free",
             "name": "MiniMax M2.5 Free",
             "api": "openai-completions",
             "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
             "contextWindow": 100000,
             "maxTokens": 16384
           },
@@ -149,8 +97,15 @@
             "name": "Nemotron 3 Super Free",
             "api": "openai-completions",
             "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
             "contextWindow": 100000,
             "maxTokens": 16384
           },
@@ -159,8 +114,15 @@
             "name": "Nemotron 3 Super Free (Low)",
             "api": "openai-completions",
             "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
             "contextWindow": 100000,
             "maxTokens": 16384
           },
@@ -169,8 +131,15 @@
             "name": "Nemotron 3 Super Free (Medium)",
             "api": "openai-completions",
             "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
             "contextWindow": 100000,
             "maxTokens": 16384
           },
@@ -179,9 +148,50 @@
             "name": "Nemotron 3 Super Free (High)",
             "api": "openai-completions",
             "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
             "contextWindow": 100000,
+            "maxTokens": 16384
+          },
+          {
+            "id": "opencode/qwen3.6-plus-free",
+            "name": "Qwen3.6 Plus Free",
+            "api": "openai-completions",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 16384
+          },
+          {
+            "id": "opencode/gpt-5-nano",
+            "name": "GPT-5 Nano",
+            "api": "openai-completions",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
             "maxTokens": 16384
           }
         ]
@@ -194,29 +204,48 @@
         "primary": "opencode/big-pickle"
       },
       "models": {
-        "opencode/big-pickle": { "alias": "Big Pickle" },
-        "opencode/big-pickle:high": { "alias": "Big Pickle (High)" },
-        "opencode/big-pickle:max": { "alias": "Big Pickle (Max)" },
-        "opencode/mimo-v2-pro-free": { "alias": "MiMo V2 Pro Free" },
-        "opencode/mimo-v2-pro-free:low": { "alias": "MiMo V2 Pro (Low)" },
-        "opencode/mimo-v2-pro-free:medium": { "alias": "MiMo V2 Pro (Medium)" },
-        "opencode/mimo-v2-pro-free:high": { "alias": "MiMo V2 Pro (High)" },
-        "opencode/mimo-v2-omni-free": { "alias": "MiMo V2 Omni Free" },
-        "opencode/mimo-v2-omni-free:low": { "alias": "MiMo V2 Omni (Low)" },
-        "opencode/mimo-v2-omni-free:medium": { "alias": "MiMo V2 Omni (Medium)" },
-        "opencode/mimo-v2-omni-free:high": { "alias": "MiMo V2 Omni (High)" },
-        "opencode/minimax-m2.5-free": { "alias": "MiniMax M2.5 Free" },
-        "opencode/nemotron-3-super-free": { "alias": "Nemotron 3 Super Free" },
-        "opencode/nemotron-3-super-free:low": { "alias": "Nemotron (Low)" },
-        "opencode/nemotron-3-super-free:medium": { "alias": "Nemotron (Medium)" },
-        "opencode/nemotron-3-super-free:high": { "alias": "Nemotron (High)" }
+        "opencode/big-pickle": {
+          "alias": "Big Pickle"
+        },
+        "opencode/big-pickle:high": {
+          "alias": "Big Pickle (High)"
+        },
+        "opencode/big-pickle:max": {
+          "alias": "Big Pickle (Max)"
+        },
+        "opencode/minimax-m2.5-free": {
+          "alias": "MiniMax M2.5 Free"
+        },
+        "opencode/nemotron-3-super-free": {
+          "alias": "Nemotron 3 Super Free"
+        },
+        "opencode/nemotron-3-super-free:low": {
+          "alias": "Nemotron (Low)"
+        },
+        "opencode/nemotron-3-super-free:medium": {
+          "alias": "Nemotron (Medium)"
+        },
+        "opencode/nemotron-3-super-free:high": {
+          "alias": "Nemotron (High)"
+        },
+        "opencode/qwen3.6-plus-free": {
+          "alias": "Qwen3.6 Plus Free"
+        },
+        "opencode/gpt-5-nano": {
+          "alias": "GPT-5 Nano"
+        }
       },
       "workspace": "~/.openclaw/workspace"
     }
   },
   "tools": {
     "profile": "coding",
-    "web": { "search": { "enabled": true, "provider": "duckduckgo" } }
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "duckduckgo"
+      }
+    }
   },
   "commands": {
     "native": "auto",
@@ -224,15 +253,25 @@
     "restart": true,
     "ownerDisplay": "raw"
   },
-  "session": { "dmScope": "per-channel-peer" },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
   "hooks": {
     "internal": {
       "enabled": true,
       "entries": {
-        "boot-md": { "enabled": true },
-        "session-memory": { "enabled": true },
-        "command-logger": { "enabled": true },
-        "bootstrap-extra-files": { "enabled": true }
+        "boot-md": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        },
+        "command-logger": {
+          "enabled": true
+        },
+        "bootstrap-extra-files": {
+          "enabled": true
+        }
       }
     }
   },
@@ -240,11 +279,31 @@
     "port": 18789,
     "mode": "local",
     "bind": "loopback",
-    "auth": { "mode": "token", "token": "CHANGE_ME" },
-    "tailscale": { "mode": "off", "resetOnExit": false },
+    "auth": {
+      "mode": "token",
+      "token": "CHANGE_ME"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
     "nodes": {
-      "denyCommands": ["camera.snap", "camera.clip", "screen.record", "contacts.add", "calendar.add", "reminders.add", "sms.send"]
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send"
+      ]
     }
   },
-  "plugins": { "entries": { "duckduckgo": { "enabled": true } } }
+  "plugins": {
+    "entries": {
+      "duckduckgo": {
+        "enabled": true
+      }
+    }
+  }
 }
